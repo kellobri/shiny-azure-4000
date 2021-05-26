@@ -9,10 +9,10 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+- group: 'RStudio Connect Vars'
 
+steps:
 - task: Bash@3
   inputs:
     targetType: 'inline'
@@ -24,3 +24,5 @@ steps:
           echo "    export CONNECT_SERVER='http://connect.company.com/'"
           exit 1
       fi
+      
+      echo "${CONNECT_SERVER}"
